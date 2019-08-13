@@ -1,0 +1,14 @@
+---
+- name: Playbook to monitor the RPi nodes temp in the cluster
+  hosts: myrpicluster
+  gather_facts: no
+  tasks:
+    - name: 'To Monitor the Node Temp'
+      shell: /opt/vc/bin/vcgencmd measure_temp
+      register: vcgencmd
+      async: 0
+      poll: 0
+      ignore_errors: true
+      become: true
+
+    - debug: msg={{ vcgencmd.stdout }}
