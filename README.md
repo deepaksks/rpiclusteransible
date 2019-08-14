@@ -1,6 +1,6 @@
 # rpiclusteroperationautomation
 
-Very simple Ansible playbooks to manage the Raspberry PI clsuter nodes (Reboot, Shutdown, Update and Upgrade) remotly from the master node.
+Very simple Ansible playbooks to manage the Raspberry PI clsuter nodes (Reboot, Shutdown, Update, Upgrade and Temperature monitoring) remotly from the master node.
 
 
 # Prerequisite
@@ -34,3 +34,10 @@ Executing the below playbook will Shutdown all the Raspberry PI's in the cluster
 Executing the below playbook will Reboot all the Raspberry PI's in the cluster
 
 `ansible-playbook playbooks/rebootnodes.yml -i hosts`
+
+
+### Temperature Monitoring
+
+Executing the below playbook will dislay the temperature of all the Raspberry PI's in the cluster
+
+`ansible-playbook playbooks/monitornodetemp.yml -i hosts`
