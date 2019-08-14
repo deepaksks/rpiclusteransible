@@ -6,9 +6,6 @@
     - name: 'To Monitor the Node Temp'
       shell: /opt/vc/bin/vcgencmd measure_temp
       register: vcgencmd
-      async: 0
-      poll: 0
-      ignore_errors: true
       become: true
 
     - debug: msg={{ vcgencmd.stdout }}
