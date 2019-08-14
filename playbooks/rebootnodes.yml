@@ -1,15 +1,20 @@
 ---
 - name: Playbook to reboot the RPi nodes in the cluster
   hosts: myrpicluster
-  gather_facts: no
-  tasks:
-    - name: 'Reboot RPi'
-      shell: shutdown -r now
-      async: 0
-      poll: 0
-      ignore_errors: true
-      become: true
+  become: yes
 
-    - name: "Wait for reboot to complete"
-      local_action: wait_for host={{ ansible_host }} port=22 state=started delay=10
-      become: false
+  tasks:
+   - name: Check the uptime
+     shell: uptime
+     register: UPTIME_PRE_REBOOT
+
+   - debug: msg={{UPTIME_PRE_REBOOT.stdout}}
+
+   - name: Unconditionally reboot the machine with all defaults
+     reboot:
+
+   - name: Check the uptime after reboot
+     shell: uptime
+     register: UPTIME_POST_REBOOT
+
+   - debug: msg={{UPTIME_POST_REBOOT.stdout}}
