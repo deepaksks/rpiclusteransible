@@ -2,7 +2,7 @@
 - name: Playbook to manage the updates for RPi nodes in the cluster
   hosts: myrpicluster
   tasks:
-    - name: 'Update apt package cache'
+    - name: 'To Update apt package cache'
       become: yes
       apt:
         update_cache=yes
